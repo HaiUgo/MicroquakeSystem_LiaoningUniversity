@@ -35,7 +35,7 @@ public class MainThread extends Thread{
     /**
      * fileStr must define at first with different path for your destination.
      */
-    public static String fileStr[] = new String[6];
+    public static String fileStr[] = new String[Parameters.SensorNum];
     /**this variable obtain the parent fold name.*/
     public static String fileParentPackage[] = new String[Parameters.SensorNum];
     /**this variable exchange data to the foreground.*/
@@ -68,13 +68,13 @@ public class MainThread extends Thread{
     	
     	/**when we need to read data offline, we can use the absolute path as follows.*/
 
-//        fileStr[0] = "I:/研究生阶段/矿山/矿山数据/12.21红阳三矿2.2地震/Test2/";
-//        fileStr[1] = "I:/研究生阶段/矿山/矿山数据/12.21红阳三矿2.2地震/Test3/";
-//        fileStr[2] = "I:/研究生阶段/矿山/矿山数据/12.21红阳三矿2.2地震/Test5/";
-//        fileStr[3] = "I:/研究生阶段/矿山/矿山数据/12.21红阳三矿2.2地震/Test1/";
-//        fileStr[4] = "I:/研究生阶段/矿山/矿山数据/12.21红阳三矿2.2地震/Test4/";
-//        fileStr[5] = "I:/研究生阶段/矿山/矿山数据/12.21红阳三矿2.2地震/Test6/";
-//        fileStr[6] = "I:/研究生阶段/矿山/矿山数据/12.21红阳三矿2.2地震/Test7/";
+        fileStr[0] = "I:/研究生阶段/矿山/矿山数据/红阳三矿/20200711/Testr/";
+        fileStr[1] = "I:/研究生阶段/矿山/矿山数据/红阳三矿/20200711/Testt/";
+        fileStr[2] = "I:/研究生阶段/矿山/矿山数据/红阳三矿/20200711/Testu/";
+        fileStr[3] = "I:/研究生阶段/矿山/矿山数据/红阳三矿/20200711/Testw/";
+        fileStr[4] = "I:/研究生阶段/矿山/矿山数据/红阳三矿/20200711/Testx/";
+        fileStr[5] = "I:/研究生阶段/矿山/矿山数据/红阳三矿/20200711/Testy/";
+        fileStr[6] = "I:/研究生阶段/矿山/矿山数据/红阳三矿/20200711/Testz/";
         
 //        fileStr[0] = "I:/研究生阶段/矿山/程序修改记录/读新仪器数据融合-曹睿-马瑞强/新设备数据/2/3-西风井/";
 //        fileStr[1] = "I:/研究生阶段/矿山/程序修改记录/读新仪器数据融合-曹睿-马瑞强/新设备数据/2/4-铁塔/";
@@ -85,21 +85,19 @@ public class MainThread extends Thread{
 //        fileStr[3] = "I:/研究生阶段/矿山/矿山数据/20200629/Testy/";
 //        fileStr[4] = "I:/研究生阶段/矿山/矿山数据/20200629/Testz/";
         
-        
-//    	fileStr[0] = "I:/研究生阶段/矿山/矿山数据/平顶山/20191208/Testt/";
-//    	fileStr[1] = "I:/研究生阶段/矿山/矿山数据/平顶山/20191208/Testw/";
-//    	fileStr[2] = "I:/研究生阶段/矿山/矿山数据/平顶山/20191208/Testy/";
-//    	fileStr[3] = "I:/研究生阶段/矿山/矿山数据/平顶山/20191208/Testz/";
-//    	fileStr[4] = "I:/研究生阶段/矿山/矿山数据/平顶山/20190609/Testz/";
-    
-    	fileStr[0] = "I:/研究生阶段/矿山/矿山数据/红阳三矿/20200711/Testz/";
-        fileStr[1] = "I:/研究生阶段/矿山/矿山数据/红阳三矿/20200711/Testr/";
-        fileStr[2] = "I:/研究生阶段/矿山/矿山数据/红阳三矿/20200711/Testu/";
-        fileStr[3] = "I:/研究生阶段/矿山/矿山数据/红阳三矿/20200711/Testw/";
-        fileStr[4] = "I:/研究生阶段/矿山/矿山数据/红阳三矿/20200711/Testx/";
-        fileStr[5] = "I:/研究生阶段/矿山/矿山数据/红阳三矿/20200711/Testy/";
-//        fileStr[6] = "I:/研究生阶段/矿山/矿山数据/红阳三矿/20200711/Testt/";
-        
+//    	fileStr[0] = "I:/研究生阶段/矿山/矿山数据/平顶山/20190329/Testu/";
+//    	fileStr[1] = "I:/研究生阶段/矿山/矿山数据/平顶山/20190329/Testw/";
+//    	fileStr[2] = "I:/研究生阶段/矿山/矿山数据/平顶山/20190329/Testx/";
+//    	fileStr[3] = "I:/研究生阶段/矿山/矿山数据/平顶山/20190329/Testy/";
+//    	fileStr[4] = "I:/研究生阶段/矿山/矿山数据/平顶山/20190329/Testz/";
+
+//    	fileStr[0] = "I:/研究生阶段/矿山/矿山数据/红阳三矿/20200728/Testr/";
+//        fileStr[1] = "I:/研究生阶段/矿山/矿山数据/红阳三矿/20200728/Testy/";
+//        fileStr[2] = "I:/研究生阶段/矿山/矿山数据/红阳三矿/20200728/Testz/";
+//        fileStr[3] = "I:/研究生阶段/矿山/矿山数据/红阳三矿/20200728/Testw/";
+//        fileStr[4] = "I:/研究生阶段/矿山/矿山数据/红阳三矿/20200728/Testu/";
+//        fileStr[5] = "I:/研究生阶段/矿山/矿山数据/红阳三矿/20200711/Testy/";
+//        fileStr[6] = "I:/研究生阶段/矿山/矿山数据/红阳三矿/20200711/Testz/";
         
 //        fileStr[0] = "I:/研究生阶段/矿山/矿山数据/红阳三矿2.14/Test1/";
 //        fileStr[1] = "I:/研究生阶段/矿山/矿山数据/红阳三矿2.14/Test2/";
@@ -151,7 +149,7 @@ public class MainThread extends Thread{
 //            	try {
 //                    Thread.sleep(1000*(r.nextInt(10)+1));
 //                } catch (InterruptedException e2) {	e2.printStackTrace();}
-                
+//                
                 //the procedure will reset when the sensors produce a new file or there produces net error.
                 if(ReadData.netError==true||ReadData.newData==true||isFirst==true){
                 	
@@ -329,12 +327,7 @@ public class MainThread extends Thread{
                 System.out.println("----------开始处理第 " + count + " 组数据---------");
             //begin endless loop.
             while (true) {
-                /*try {
-					Thread.sleep(2000);
-				} catch (InterruptedException e2) {
-					// TODO Auto-generated catch block
-					e2.printStackTrace();
-				}*/
+                
             	synchronized (this) {
                     while (readDataArray == null || ReadData.newData == true) {
                         count++;
@@ -498,7 +491,7 @@ class readTask implements Runnable{
     @SuppressWarnings("unused")
     private void doWork() throws Exception {
 
-        while (num <= 10) {//读取10s的数据
+        while (num <= Parameters.readLen) {//读取10s的数据
             if(manager.isMrMa[this.sensorID]==false) {
 	        	if(Parameters.offline==true)
 	                temVector = readData.getOfflineData(sensorName, sensorID);

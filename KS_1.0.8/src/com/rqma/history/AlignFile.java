@@ -2,6 +2,8 @@ package com.rqma.history;
 
 import com.h2.constant.Parameters;
 import com.yang.readFile.ReadDataSegmentHead;
+
+import mutiThread.MainThread;
 import utils.DateArrayToIntArray;
 
 import java.text.ParseException;
@@ -78,6 +80,7 @@ public class AlignFile {
             int pos = (time_sorted[0].position);
             if(pos>=allfilesname[id].length){
                 System.out.println("该台站此目录下的所有文件已处理完毕");
+                MainThread.exitVariable_visual = true;
                 System.exit(0);
             }
 
@@ -178,6 +181,7 @@ public class AlignFile {
 	            int pos = (timeLine[0].position);
 	            if(pos>=allfilesname[id].length){
 	                System.out.println("该台站此目录下的所有文件已处理完毕(---没有能够对齐的文件---)");
+	                MainThread.exitVariable_visual = true;
 	                System.exit(0);
 	            }
 	
@@ -197,6 +201,7 @@ public class AlignFile {
                 int pos = (timeLine[0].position);
                 if(pos>=allfilesname[id].length){
                     System.out.println("该台站此目录下的所有文件已处理完毕(---没有能够对齐的文件---)");
+                    MainThread.exitVariable_visual = true;
                     System.exit(0);
                 }
 

@@ -8,16 +8,19 @@ import mutiThread.MainThread;
  */
 public class Parameters
 {
-	/**长时窗的时长，单位是毫秒*/
+	/**
+	 * 长时窗的时长，单位是毫秒
+	 */
 	public static final int LONGTIMEWINDOW = 50;// 单位是毫秒
-	/**短时窗的时长，单位是毫秒*/
+	/**
+	 * 短时窗的时长，单位是毫秒
+	 */
 	public static final int SHORTTIMEWINDOW = 10;// 单位是毫秒
 	/**
 	 * 传感器的采样频率，单位是hz/s，文档中是10k，表示每秒有10000条数据
 	 */
-	public static int FREQUENCY = 4800;// 单位hz/s
-	public static int readLen = 10;
-	public static double distanceToSquareWave = 0.2;//整秒时间是否是方波由低电平到高电平的位置，不是则看刘老师软件中整秒距离方波由低到高电平的秒数，写入该位置，比如当前整秒与方波相差0.3s则该变量值为0.3.
+	public static final int FREQUENCY = 4800;// 单位hz/s
+	public static double distanceToSquareWave = 0;//整秒时间是否是方波由低电平到高电平的位置，不是则看刘老师软件中整秒距离方波由低到高电平的秒数，写入该位置，比如当前整秒与方波相差0.3s则该变量值为0.3.
 	/**
 	 * 用于单位转换，采样频率是秒，长短时窗的单位是毫秒
 	 */
@@ -27,7 +30,6 @@ public class Parameters
 	 */
 	public static final int HEAD = 32767;
 	public static final int TAIL = -32768;
-	
 	/**
 	 * 存储虚窗口的数据，虚窗口保存上一个10秒数据中的后5秒数据，这个数用于跳过前边的数据
 	 */
@@ -51,20 +53,15 @@ public class Parameters
 	public static double ShortCompareLongAdjust=1.4;
 
 	public static int afterRange = (Parameters.FREQUENCY+200)/10;
-	public static int refineRange = (int) ((Parameters.FREQUENCY+200)*1.2);
+	public static int refineRange = (int) ((Parameters.FREQUENCY+200)*1.5);
 //	public static final double afterRange_Threshold123 = 1000;
-	public static double afterRange_Threshold456 = 500;
-	public static double afterRange_ThresholdMin = 500;
-	public static double afterRange_ThresholdMax = 1000;
-	public static double refineRange_ThresholdMin = 500;
-	public static double refineRange_ThresholdMax = 2000;
-	
-	public static double refineRange_variance = 0.0;
+	public static double afterRange_Threshold456 = 1000;
+	public static double refineRange_Threshold456 = 0;
 	
 	/**
 	 * 距离其他传感器的传输花费时间，大于1s则认为不时同时发生的事件，但要根据实际点之间的距离和波速进行调整。
 	 */
-	public static int IntervalToOtherSensors=2;
+	public static int IntervalToOtherSensors=5;
 	/**
 	 * when it is true, then the time interval among all sensors are turn on.
 	 */
@@ -77,7 +74,7 @@ public class Parameters
 	 * 长短时窗每次移动的距离（滑动窗口的跳数），暂时设置为移动100条数据
 	 * 该值设置太小，则可能由于电脑性能不行，导致实时读取数据受限
 	 */
-	public static int INTERVAL = 50;
+	public static int INTERVAL = 100;
 	/**
 	 * P波波速，只能通过放炮准确测定，否则只能估算，对于定位结果影响较大
 	 */
@@ -89,7 +86,7 @@ public class Parameters
 	/**
 	 * 设置传感器的数量，通过设定主函数中的fileStr设置
 	 */
-	public static int SensorNum = 7;
+	public static final int SensorNum = MainThread.fileStr.length;
 	/**
 	 * 从0-5依次为各个盘符的背景噪声，背景噪声必须在传感器布置到矿区固定后，才能通过长时间观察确定
 	 * 这个顺序必须与启动时的传感器序号顺序一致
@@ -101,15 +98,13 @@ public class Parameters
 	 * 传感器的信息 经度，维度，海拔，坐标为CAD单位，需在程序运行前设置
 	 */
 	public static final double[][] SENSORINFO = {
-			{ 41518099.807,4595388.504,22.776 },//T
-			{ 41518060.298,4594304.927,21.926  },//U
-			{ 41520207.356,4597983.404,22.661  },//W
-			{ 41520815.875,4597384.576,25.468  },//X
-			{ 41519304.125,4595913.485,23.921  },//Z
-			{ 41519926.476,4597275.978,20.705  },//Y
-			{ 41516707.440,4593163.619,22.564  },//V
-			{ 41516836.655,4596627.472,21.545  },//S
-			{ 41517290.0374,4599537.3261,24.5649  }//R
+			{ 3744774.016, 38422332.101, 157.019 },//T
+			{ 3743774.578, 38421827.120, 120.191 },//U
+			{ 3744698.415, 38421314.653, 126.809 },//W
+			{ 3744199.610, 38423376.100, 202.175 },//X
+			{ 3742996.232, 38423392.741, 117.530 },//Z
+			{ 3746036.362, 38419962.476, 127.009 },//Y
+			{ 3743713.362, 38423292.665, 139.238 }//V
 	};//从上起为牛家村、洗煤厂、香山矿、王家村、十一矿工业广场老办公楼西南角花坛、西风井、打钻工区
 	public static final String region = "红阳";
 	/**
@@ -143,7 +138,7 @@ public class Parameters
 	 * 初始化盘符信息，用于持续时间震级判断、激发容器数据的保存，须与Mainthread中的fileStr数组相同
 	 * 必须与传感器数量相同，且该变量必须在每次部署到新地点后，直接修改，否则无法运行程序！！！！
 	 */
-	public static String[] diskName = { "t:/" , "u:/" , "w:/" , "x:/" , "z:/" , "y:/" , "v:/" , "s:/" , "r:/"};
+	public static String[] diskName = { "t:/" , "u:/" , "w:/" , "x:/" , "z:/" , "y:/" , "v:/"};
 	/**
 	 * when we will store data to txt file, we need to set this variable to 1.
 	 */
@@ -155,7 +150,7 @@ public class Parameters
 	/**
 	 * when we will store data to database, we need to set this variable to 1.
 	 */
-	public static int isStorageDatabase = 0;
+	public static int isStorageDatabase = 1;
 	/**
 	 * when we will store each motivation sensor data to csv file, we need to set this variable to 1.
 	 */
@@ -169,7 +164,7 @@ public class Parameters
 	 */
 	public static int isStorageEventRecord = 1;
 	/**
-	 * 设置三台站、五台站txt存储路径
+	 * 设置三台站、五台站存储路径
 	 * 默认为：D://ConstructionData//3moti//
 	 */
 	public static String AbsolutePath3 = "D:/data/ConstructionData/3moti/";
@@ -222,7 +217,7 @@ public class Parameters
 	 * if adjust the procedure to read the second new file endwith hfmed
 	 * please turn this variable to true.
 	 */
-	public static boolean readSecond=false;
+	public static boolean readSecond=true;
 	/**
 	 * plus times
 	 */
@@ -230,10 +225,15 @@ public class Parameters
 	public static double plusDouble_coefficient_45 = 0.00000298;
 	public static double plusDouble_coefficient_12 = 0.00004768;
 	
+	
+	
+	
+	
+	
 	/**
 	 * control to run procedure in a offline way.
 	 */
-	public static boolean offline=true;
+	public static boolean offline=false;
 	
 	/**where the data are reading from?
 	 * There are two regions we distribute called datong, pingdingshan.
@@ -243,8 +243,8 @@ public class Parameters
 	/**
 	 * the time to read when procedure start.
 	 */
-//	public static final String timeStr = "200214123000";
-	public static String timeStr = "200711080000";
+//	public static final String timeStr = "170214123000";
+	public static final String timeStr = "200214130000";
 	/**the data file must store in a fold which name ends with "1" or "2" or "3" or "4" and etc.
 	 * Please modify this variable to adapt different mining area.
 	 * */
@@ -307,6 +307,8 @@ public class Parameters
 	public static final String AbsolutePath5_offline = "D:/data/ConstructionData/5moti/";
 	public static final String AbsolutePath_CSV3_offline = "D:/data/ConstructionData/3moti/";
 	public static final String AbsolutePath_CSV5_offline = "D:/data/ConstructionData/5moti/";
+	
+	
 	
 	/**
 	 * 程序注释需要加上前标，以防止出错无法判断出错位置

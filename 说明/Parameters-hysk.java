@@ -8,9 +8,13 @@ import mutiThread.MainThread;
  */
 public class Parameters
 {
-	/**长时窗的时长，单位是毫秒*/
+	/**
+	 * 长时窗的时长，单位是毫秒
+	 */
 	public static final int LONGTIMEWINDOW = 50;// 单位是毫秒
-	/**短时窗的时长，单位是毫秒*/
+	/**
+	 * 短时窗的时长，单位是毫秒
+	 */
 	public static final int SHORTTIMEWINDOW = 10;// 单位是毫秒
 	/**
 	 * 传感器的采样频率，单位是hz/s，文档中是10k，表示每秒有10000条数据
@@ -77,7 +81,7 @@ public class Parameters
 	 * 长短时窗每次移动的距离（滑动窗口的跳数），暂时设置为移动100条数据
 	 * 该值设置太小，则可能由于电脑性能不行，导致实时读取数据受限
 	 */
-	public static int INTERVAL = 50;
+	public static final int INTERVAL = 100;
 	/**
 	 * P波波速，只能通过放炮准确测定，否则只能估算，对于定位结果影响较大
 	 */
@@ -89,7 +93,7 @@ public class Parameters
 	/**
 	 * 设置传感器的数量，通过设定主函数中的fileStr设置
 	 */
-	public static int SensorNum = 7;
+	public static int SensorNum = MainThread.fileStr.length;
 	/**
 	 * 从0-5依次为各个盘符的背景噪声，背景噪声必须在传感器布置到矿区固定后，才能通过长时间观察确定
 	 * 这个顺序必须与启动时的传感器序号顺序一致
@@ -155,7 +159,7 @@ public class Parameters
 	/**
 	 * when we will store data to database, we need to set this variable to 1.
 	 */
-	public static int isStorageDatabase = 0;
+	public static int isStorageDatabase = 1;
 	/**
 	 * when we will store each motivation sensor data to csv file, we need to set this variable to 1.
 	 */
@@ -163,7 +167,7 @@ public class Parameters
 	/**
 	 * when we will store all motivation sensor data to csv file, we need to set this variable to 1.
 	 */
-	public static int isStorageAllMotivationCSV = 1;
+	public static int isStorageAllMotivationCSV =1;
 	/**
 	 * when we will store record of each event, we need to set this variable to 1.
 	 */
@@ -230,10 +234,11 @@ public class Parameters
 	public static double plusDouble_coefficient_45 = 0.00000298;
 	public static double plusDouble_coefficient_12 = 0.00004768;
 	
+	
 	/**
 	 * control to run procedure in a offline way.
 	 */
-	public static boolean offline=true;
+	public static boolean offline=false;
 	
 	/**where the data are reading from?
 	 * There are two regions we distribute called datong, pingdingshan.
@@ -243,8 +248,8 @@ public class Parameters
 	/**
 	 * the time to read when procedure start.
 	 */
-//	public static final String timeStr = "200214123000";
-	public static String timeStr = "200711080000";
+//	public static final String timeStr = "170214123000";
+	public static final String timeStr = "200214130000";
 	/**the data file must store in a fold which name ends with "1" or "2" or "3" or "4" and etc.
 	 * Please modify this variable to adapt different mining area.
 	 * */
@@ -308,6 +313,8 @@ public class Parameters
 	public static final String AbsolutePath_CSV3_offline = "D:/data/ConstructionData/3moti/";
 	public static final String AbsolutePath_CSV5_offline = "D:/data/ConstructionData/5moti/";
 	
+	
+	
 	/**
 	 * 程序注释需要加上前标，以防止出错无法判断出错位置
 	 * 命名规则：各部分提示符_自部分名称，如计算部分的近震震级表示为：compute_nearQuake
@@ -336,7 +343,7 @@ public class Parameters
 	 * 前后台交互部分：sev
 	 *  查询：select
 	 *  传输：translate1~translateN
-	 *  
+	 * 
 	 */
 	public static final String compute_nearQuake = "compute_nearQuake";
 	public static final String compute_energy = "compute_energy";
