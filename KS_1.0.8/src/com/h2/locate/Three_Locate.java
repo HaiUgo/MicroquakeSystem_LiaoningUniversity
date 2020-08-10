@@ -98,14 +98,6 @@ public class Three_Locate {
 				try {threadSignal_cal.await();}
 		        catch (InterruptedException e1) {e1.printStackTrace();}
 				
-//				for(int i=0;i<sensors1.length;i++) {
-//					sensorThread3[i] = new ThreadStep3(sensors1[i], location_refine, i, threadSignal_cal);
-//					sensorThread3[i].cal();//计算单个传感器的近震震级
-//				}
-//				if(Parameters.isStorageEachMotivationCSV==1) {
-//					writeToDisk.writeToCSV(sensors1, 3, location.getquackTime(), sensors1[0].getpanfu()+" ");
-//				}
-				
 				//We integrate every sensors quake magnitude to compute the last quake magnitude.
 				float earthQuakeFinal = 0;
 				for (Sensor sen : sensors1)	earthQuakeFinal += sen.getEarthClassFinal();
@@ -114,17 +106,23 @@ public class Three_Locate {
 					earthQuakeFinal = (float) (earthQuakeFinal-Parameters.MinusAFixedValue);// We discuss the consequen to minus 0.7 to reduce the final quake magnitude at datong coal mine.
 				
 				//We compute the minimum energy of all sensors as the final energy.
-				double finalEnergy = 0.0;
-				double []energy = new double[sensors1.length];
-				for (int i=0;i<sensors1.length;i++)	energy[i] = sensors1[i].getEnergy();
+				double finalEnergy = 0.0;double []energy = new double[sensors1.length];
+				int finalClass = 0;int [] class1 = new int[sensors1.length];
+				for (int i=0;i<sensors1.length;i++) {
+					energy[i] = sensors1[i].getEnergy();
+					class1[i] = sensors1[i].getClass1();
+				}
 				finalEnergy = one_dim_array_max_min.mindouble(energy);
+				finalClass = one_dim_array_max_min.getMethod_4(class1);
+				
+//				System.out.println("该事件的分类为："+finalClass);
 				
 				//calculate the during grade with 3 sensors.
-				float duringEarthQuake = calDuringTimePar.computeDuringQuakeGrade(sensors1,3);
+//				float duringEarthQuake = calDuringTimePar.computeDuringQuakeGrade(sensors1,3);
 				
 				//we will set 0 when the consequence appears NAN value.
 				String quakeString = (Float.compare(Float.NaN, earthQuakeFinal) == 0) ? "0"	: String.format("%.2f", earthQuakeFinal);//修改震级，保留两位小数
-				double quakeStringDuring = (Float.compare(Float.NaN, duringEarthQuake) == 0) ? 0:  duringEarthQuake;//修改震级，保留两位小数
+//				double quakeStringDuring = (Float.compare(Float.NaN, duringEarthQuake) == 0) ? 0:  duringEarthQuake;//修改震级，保留两位小数
 				String result = location_refine.toString()+" "+quakeString+" "+finalEnergy+" "+location_refine.getquackTime();//坐标+时间+震级
 				
 				//将各double坐标转换成数据库组形式
@@ -154,13 +152,15 @@ public class Three_Locate {
 				aQuackResults.setxData(Double.parseDouble(nf.format(location_refine.getLatitude())));
 				aQuackResults.setyData(Double.parseDouble(nf.format(location_refine.getLongtitude())));
 				aQuackResults.setzData(Double.parseDouble(nf.format(location_refine.getAltitude())));
-				aQuackResults.setQuackTime(StringToDateTime.getDateSql(location_refine.getquackTime()));
+				aQuackResults.setQuackTime(location_refine.getquackTime());
 				aQuackResults.setQuackGrade(Double.parseDouble(quakeString));
 				aQuackResults.setParrival(location_refine.getSecTime());//P波到时，精确到毫秒
 				aQuackResults.setPanfu(sensors1[0].getpanfu());
-				aQuackResults.setDuringGrade(quakeStringDuring);//持续时间震级
+				aQuackResults.setDuringGrade(0);//持续时间震级
 				aQuackResults.setNengliang(finalEnergy);//能量，待解决
 				aQuackResults.setFilename_S(sensors1[0].getFilename());
+				aQuackResults.setTensor(0);//矩张量
+				aQuackResults.setKind("three");
 
 				//output the three locate consequence.
 				System.out.println("三台站："+aQuackResults.toString());//在控制台输出结果
@@ -168,7 +168,7 @@ public class Three_Locate {
 				//diagnose is not open the function of storing into the database.
 				if(Parameters.isStorageDatabase ==1) {
 					try {
-						aDbExcute.addElement3(aQuackResults);
+						aDbExcute.addElement(aQuackResults);
 					} catch (Exception e) {
 						System.out.println("add to database error");
 					}

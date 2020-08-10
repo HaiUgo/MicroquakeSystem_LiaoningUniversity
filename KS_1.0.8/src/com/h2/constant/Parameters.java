@@ -17,7 +17,7 @@ public class Parameters
 	 */
 	public static int FREQUENCY = 4800;// 单位hz/s
 	public static int readLen = 10;
-	public static double distanceToSquareWave = 0.2;//整秒时间是否是方波由低电平到高电平的位置，不是则看刘老师软件中整秒距离方波由低到高电平的秒数，写入该位置，比如当前整秒与方波相差0.3s则该变量值为0.3.
+	public static double distanceToSquareWave = 0.17;//整秒时间是否是方波由低电平到高电平的位置，不是则看刘老师软件中整秒距离方波由低到高电平的秒数，写入该位置，比如当前整秒与方波相差0.3s则该变量值为0.3.
 	/**
 	 * 用于单位转换，采样频率是秒，长短时窗的单位是毫秒
 	 */
@@ -89,7 +89,7 @@ public class Parameters
 	/**
 	 * 设置传感器的数量，通过设定主函数中的fileStr设置
 	 */
-	public static int SensorNum = 7;
+	public static int SensorNum = 8;
 	/**
 	 * 从0-5依次为各个盘符的背景噪声，背景噪声必须在传感器布置到矿区固定后，才能通过长时间观察确定
 	 * 这个顺序必须与启动时的传感器序号顺序一致
@@ -155,7 +155,7 @@ public class Parameters
 	/**
 	 * when we will store data to database, we need to set this variable to 1.
 	 */
-	public static int isStorageDatabase = 0;
+	public static int isStorageDatabase = 1;
 	/**
 	 * when we will store each motivation sensor data to csv file, we need to set this variable to 1.
 	 */
@@ -168,6 +168,7 @@ public class Parameters
 	 * when we will store record of each event, we need to set this variable to 1.
 	 */
 	public static int isStorageEventRecord = 1;
+	public static int isDelay = 0;
 	/**
 	 * 设置三台站、五台站txt存储路径
 	 * 默认为：D://ConstructionData//3moti//
@@ -190,11 +191,12 @@ public class Parameters
 	/**
 	 * 5台站、3台站存入的数据库表名
 	 */
-	public static final String DatabaseName5 = "mine_quack_5_results";
+	public static final String DatabaseName5 = "5mine_quack_results";
 	public static final String DatabaseName5_updated = "mine_quack_5_results_updated";
 	public static final String DatabaseName4 = "mine_quack_4_results";
 	public static final String DatabaseName3 = "mine_quack_3_results";
 	public static final String DatabaseName3_updated = "mine_quack_3_results_updated";
+//	public static String jdbcPath="";
 	/**
 	 * 测试重复变量，当出现重复盘符时，该变量起作用。
 	 * @description
@@ -244,7 +246,7 @@ public class Parameters
 	 * the time to read when procedure start.
 	 */
 //	public static final String timeStr = "200214123000";
-	public static String timeStr = "200711080000";
+	public static String timeStr = "200603123000";
 	/**the data file must store in a fold which name ends with "1" or "2" or "3" or "4" and etc.
 	 * Please modify this variable to adapt different mining area.
 	 * */
