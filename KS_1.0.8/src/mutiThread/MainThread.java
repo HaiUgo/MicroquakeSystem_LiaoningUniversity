@@ -32,7 +32,7 @@ import controller.ADMINISTRATOR;
  * @author Yilong Zhang, Hanlin Zhang, Chengfeng Liu, rqma, Rui Cao, et al.
  */
 public class MainThread extends Thread{
-    /**
+	/**
      * fileStr must define at first with different path for your destination.
      */
     public static String fileStr[] = new String[Parameters.SensorNum];
@@ -80,11 +80,6 @@ public class MainThread extends Thread{
 //        fileStr[0] = "I:/研究生阶段/矿山/程序修改记录/读新仪器数据融合-曹睿-马瑞强/新设备数据/2/3-西风井/";
 //        fileStr[1] = "I:/研究生阶段/矿山/程序修改记录/读新仪器数据融合-曹睿-马瑞强/新设备数据/2/4-铁塔/";
     	
-//        fileStr[0] = "I:/研究生阶段/矿山/矿山数据/20200629/Testt/";
-//        fileStr[1] = "I:/研究生阶段/矿山/矿山数据/20200629/Testu/";
-//        fileStr[2] = "I:/研究生阶段/矿山/矿山数据/20200629/Testw/";
-//        fileStr[3] = "I:/研究生阶段/矿山/矿山数据/20200629/Testy/";
-//        fileStr[4] = "I:/研究生阶段/矿山/矿山数据/20200629/Testz/";
         
 //    	fileStr[0] = "I:/研究生阶段/矿山/矿山数据/平顶山/20190329/Testu/";
 //    	fileStr[1] = "I:/研究生阶段/矿山/矿山数据/平顶山/20190329/Testw/";
@@ -92,13 +87,13 @@ public class MainThread extends Thread{
 //    	fileStr[3] = "I:/研究生阶段/矿山/矿山数据/平顶山/20190329/Testy/";
 //    	fileStr[4] = "I:/研究生阶段/矿山/矿山数据/平顶山/20190329/Testz/";
 
-//    	fileStr[0] = "I:/研究生阶段/矿山/矿山数据/红阳三矿/20200728/Testr/";
-//        fileStr[1] = "I:/研究生阶段/矿山/矿山数据/红阳三矿/20200728/Testy/";
-//        fileStr[2] = "I:/研究生阶段/矿山/矿山数据/红阳三矿/20200728/Testz/";
-//        fileStr[3] = "I:/研究生阶段/矿山/矿山数据/红阳三矿/20200728/Testw/";
-//        fileStr[4] = "I:/研究生阶段/矿山/矿山数据/红阳三矿/20200728/Testu/";
-//        fileStr[5] = "I:/研究生阶段/矿山/矿山数据/红阳三矿/20200711/Testy/";
-//        fileStr[6] = "I:/研究生阶段/矿山/矿山数据/红阳三矿/20200711/Testz/";
+    	fileStr[0] = "I:/研究生阶段/矿山/矿山数据/红阳三矿/20200711/Testr/";
+        fileStr[1] = "I:/研究生阶段/矿山/矿山数据/红阳三矿/20200711/Testt/";
+        fileStr[2] = "I:/研究生阶段/矿山/矿山数据/红阳三矿/20200711/Testu/";
+        fileStr[3] = "I:/研究生阶段/矿山/矿山数据/红阳三矿/20200711/Testw/";
+        fileStr[4] = "I:/研究生阶段/矿山/矿山数据/红阳三矿/20200711/Testx/";
+        fileStr[5] = "I:/研究生阶段/矿山/矿山数据/红阳三矿/20200711/Testy/";
+        fileStr[6] = "I:/研究生阶段/矿山/矿山数据/红阳三矿/20200711/Testz/";
         
 //        fileStr[0] = "I:/研究生阶段/矿山/矿山数据/红阳三矿2.14/Test1/";
 //        fileStr[1] = "I:/研究生阶段/矿山/矿山数据/红阳三矿2.14/Test2/";
